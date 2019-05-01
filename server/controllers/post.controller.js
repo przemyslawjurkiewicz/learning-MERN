@@ -10,12 +10,14 @@ import sanitizeHtml from 'sanitize-html';
  * @returns void
  */
 export function getPosts(req, res) {
-  Post.find().sort('-dateAdded').exec((err, posts) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ posts });
-  });
+  Post.find()
+    .sort('-dateAdded')
+    .exec((err, posts) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      res.json({ posts });
+    });
 }
 
 /**
@@ -76,5 +78,14 @@ export function deletePost(req, res) {
     post.remove(() => {
       res.status(200).end();
     });
+  });
+}
+
+export function editPost(req, res) {
+  Post.update({ cuid: req.params.cuid }, req.body.post).exec((err, post) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.json({ post });
   });
 }
