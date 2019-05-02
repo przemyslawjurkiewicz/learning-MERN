@@ -7,7 +7,7 @@ import PostList from '../../components/PostList';
 import PostCreateWidget from '../../components/PostCreateWidget/PostCreateWidget';
 
 // Import Actions
-import { addPostRequest, fetchPosts, deletePostRequest, thumbUpRequest, thumbDownRequest, thumbUp, thumbDown } from '../../PostActions';
+import { addPostRequest, fetchPosts, deletePostRequest, thumbUpRequest, thumbDownRequest } from '../../PostActions';
 import { toggleAddPost } from '../../../App/AppActions';
 
 // Import Selectors
@@ -31,11 +31,11 @@ class PostListPage extends Component {
   };
 
   handleThumbUp = post => {
-    this.props.dispatch(thumbUp(post));
+    this.props.dispatch(thumbUpRequest(post));
   }
 
   handleThumbDown = post => {
-    this.props.dispatch(thumbDown(post));
+    this.props.dispatch(thumbDownRequest(post));
   }
 
   render() {
