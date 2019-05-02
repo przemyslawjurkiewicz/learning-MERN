@@ -96,22 +96,14 @@ export function thumbDown(cuid) {
   };
 }
 
-export function thumbUpRequest(cuid, post) {
+export function thumbUpRequest(cuid) {
   return (dispatch) => {
-    return callApi(`posts/${cuid}`, 'put', {
-      post: {
-        voteCount: post.voteCount,
-      },
-    }).then(() => dispatch(thumbUp(cuid, post)));
+    return callApi(`posts/${cuid}`, 'put').then(() => dispatch(thumbUp(cuid)));
   };
 }
 
-export function thumbDownRequest(cuid, post) {
+export function thumbDownRequest(cuid) {
   return (dispatch) => {
-    return callApi(`posts/${cuid}`, 'put', {
-      post: {
-        voteCount: post.voteCount,
-      },
-    }).then(() => dispatch(thumbDown(cuid, post)));
+    return callApi(`posts/${cuid}`, 'put').then(() => dispatch(thumbDown(cuid)));
   };
 }
